@@ -4,12 +4,14 @@ import com.company.U1M6Summative.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+@Repository
 public class ItemDaoJdbcTemplateImpl implements ItemDao {
 
     private JdbcTemplate jdbcTemplate;
@@ -24,10 +26,11 @@ public class ItemDaoJdbcTemplateImpl implements ItemDao {
             "select * from item";
 
     private static final String UPDATE_ITEM_SQL =
-            "update item set name = ?, description = ?, daily_rate =? where item_id = ?";
+
+            "update item set name = ?, description = ? , daily_rate = ? where item_id = ?";
 
     private static final String DELETE_ITEM_SQL =
-            "delete from label where label_id = ?";
+            "delete from item where item_id = ?";
 
     @Autowired
     public ItemDaoJdbcTemplateImpl(JdbcTemplate jdbcTemplate) {
@@ -67,7 +70,12 @@ public class ItemDaoJdbcTemplateImpl implements ItemDao {
     @Override
     public Item updateItem(Item item) {
 
-        jdbcTemplate.update(UPDATE_ITEM_SQL, item.getName(), item.getDescription(), item.getDaily_rate());
+        jdbcTemplate.update(UPDATE_ITEM_SQL,
+                item.getName(),
+                item.getDescription(),
+                item.getDaily_rate(),
+                item.getItem_id()
+        );
 
         return item;
 
