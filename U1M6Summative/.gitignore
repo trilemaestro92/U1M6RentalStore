@@ -29,3 +29,6 @@ HELP.md
 .vscode/
 
 **/resources/**
+
+src/main/resources
+src/test/resources
