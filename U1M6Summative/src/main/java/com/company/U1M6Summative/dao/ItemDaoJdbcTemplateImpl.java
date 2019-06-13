@@ -26,10 +26,11 @@ public class ItemDaoJdbcTemplateImpl implements ItemDao {
             "select * from item";
 
     private static final String UPDATE_ITEM_SQL =
-            "update item set name = ?, description = ?, daily_rate =? where item_id = ?";
+
+            "update item set name = ?, description = ? , daily_rate = ? where item_id = ?";
 
     private static final String DELETE_ITEM_SQL =
-            "delete from label where label_id = ?";
+            "delete from item where item_id = ?";
 
     @Autowired
     public ItemDaoJdbcTemplateImpl(JdbcTemplate jdbcTemplate) {
@@ -69,7 +70,12 @@ public class ItemDaoJdbcTemplateImpl implements ItemDao {
     @Override
     public Item updateItem(Item item) {
 
-        jdbcTemplate.update(UPDATE_ITEM_SQL, item.getName(), item.getDescription(), item.getDaily_rate());
+        jdbcTemplate.update(UPDATE_ITEM_SQL,
+                item.getName(),
+                item.getDescription(),
+                item.getDaily_rate(),
+                item.getItem_id()
+        );
 
         return item;
 

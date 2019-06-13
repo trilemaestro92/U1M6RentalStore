@@ -19,8 +19,11 @@ import java.util.List;
 @SpringBootTest
 public class InvoiceItemDaoTest {
 
+<<<<<<< HEAD
     @Autowired
     InvoiceItemDao invoiceItemDao;
+=======
+>>>>>>> e3086cac48fe47e33e68e089b088c9bea244d76f
     @Autowired
     CustomerDao customerDao;
     @Autowired
