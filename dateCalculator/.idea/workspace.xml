@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e493212b-d305-40ae-906e-cc95720eb407" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../U1M6Summative/src/main/java/com/company/U1M6Summative/dao/InvoiceDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../U1M6Summative/src/main/java/com/company/U1M6Summative/dao/InvoiceDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1M6Summative/src/main/java/com/company/U1M6Summative/dao/InvoiceItemDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../U1M6Summative/src/main/java/com/company/U1M6Summative/dao/InvoiceItemDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1M6Summative/src/main/java/com/company/U1M6Summative/dao/InvoiceItemDaoJbdcTemplateImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../U1M6Summative/src/main/java/com/company/U1M6Summative/dao/InvoiceItemDaoJbdcTemplateImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../U1M6Summative/src/main/java/com/company/U1M6Summative/model/InvoiceItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/../U1M6Summative/src/main/java/com/company/U1M6Summative/model/InvoiceItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -81,7 +78,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -142,6 +139,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/rec-coll-jdbctemplate-dao-updated" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
@@ -196,7 +194,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
