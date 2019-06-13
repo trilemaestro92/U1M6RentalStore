@@ -1,5 +1,6 @@
 package com.company.U1M6Summative.dao;
 
+import com.company.U1M6Summative.model.Customer;
 import com.company.U1M6Summative.model.Invoice;
 import com.company.U1M6Summative.model.InvoiceItem;
 import com.company.U1M6Summative.model.Item;
@@ -19,11 +20,9 @@ import java.util.List;
 @SpringBootTest
 public class InvoiceItemDaoTest {
 
-<<<<<<< HEAD
     @Autowired
     InvoiceItemDao invoiceItemDao;
-=======
->>>>>>> e3086cac48fe47e33e68e089b088c9bea244d76f
+
     @Autowired
     CustomerDao customerDao;
     @Autowired
@@ -43,33 +42,33 @@ public class InvoiceItemDaoTest {
 
     @Test
     public void addGetDeleteInvoiceItem(){
+        Customer testCustomer = new Customer("Luis", "Salmeron", "ls8salmeron@yahoo.com", "Bootcamp","678-907-0634");
+        testCustomer = customerDao.addCustomer(testCustomer);
+
         Item testItem = new Item("Computer","A test computer",new BigDecimal("10.00"));
 
-        Invoice testInvoice = new Invoice(22, LocalDate.of(2019,12,19),
+        Invoice testInvoice = new Invoice(testCustomer.getCustomer_id(), LocalDate.of(2019,12,19),
                 LocalDate.of(2019, 12, 22), LocalDate.of(2020, 2, 19),
                 new BigDecimal(30.00));
+
 
         testItem = itemDao.addItem(testItem);
         testInvoice = invoiceDao.addInvoice(testInvoice);
 
-        InvoiceItem invoiceItem1 = new InvoiceItem
-                (testInvoice.getInvoice_id(),
-                testItem.getItem_id(),
-                1,
-                new BigDecimal(50.00), new BigDecimal(15.00));
+        InvoiceItem invoiceItem = new InvoiceItem(testInvoice.getInvoice_id(), testItem.getItem_id(), 1,
+                50, 15);
 
+        invoiceItem = invoiceItemDao.addInvoiceItem(invoiceItem);
 
+        InvoiceItem invoiceItem1 = invoiceItemDao.getInvoiceItem(invoiceItem.getInvoiceItemId());
 
-        invoiceItem1 = invoiceItemDao.addInvoiceItem(invoiceItem1);
-        InvoiceItem invoiceItem2 = invoiceItemDao.getInvoiceItem(invoiceItem1.getInvoiceItemId());
+        assertEquals(invoiceItem1, invoiceItem);
 
-        assertEquals(invoiceItem1, invoiceItem2);
+        invoiceItemDao.deleteInvoiceItem(invoiceItem.getInvoiceItemId());
 
-        invoiceItemDao.deleteInvoiceItem(invoiceItem1.getInvoiceItemId());
+        invoiceItem1 = invoiceItemDao.getInvoiceItem(invoiceItem.getInvoiceItemId());
 
-        invoiceItem2 = invoiceItemDao.getInvoiceItem(invoiceItem1.getInvoiceItemId());
-
-        assertNull(invoiceItem2);
+        assertNull(invoiceItem1);
 
     }
 
