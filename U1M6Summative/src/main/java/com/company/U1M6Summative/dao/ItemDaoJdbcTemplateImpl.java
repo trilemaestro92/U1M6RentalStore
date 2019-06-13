@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ItemDaoJbdcTemplateImpl implements ItemDao {
+public class ItemDaoJdbcTemplateImpl implements ItemDao {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -30,7 +30,7 @@ public class ItemDaoJbdcTemplateImpl implements ItemDao {
             "delete from label where label_id = ?";
 
     @Autowired
-    public ItemDaoJbdcTemplateImpl(JdbcTemplate jdbcTemplate) {
+    public ItemDaoJdbcTemplateImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

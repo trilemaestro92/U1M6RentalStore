@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public class InvoiceItemDaoJbdcTemplateImpl implements InvoiceItemDao{
+public class InvoiceItemDaoJdbcTemplateImpl implements InvoiceItemDao{
 
     private JdbcTemplate jdbcTemplate;
 
@@ -32,7 +32,7 @@ public class InvoiceItemDaoJbdcTemplateImpl implements InvoiceItemDao{
             "delete from invoice_item where invoice_item_id = ?";
 
     @Autowired
-    public InvoiceItemDaoJbdcTemplateImpl(JdbcTemplate jdbcTemplate) {
+    public InvoiceItemDaoJdbcTemplateImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
