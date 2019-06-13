@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Invoice {
 
     private int invoice_id;
-    private int custormer_id;
+    private int customer_id;
     private LocalDate order_date;
     private LocalDate pickup_date;
     private LocalDate return_date;
@@ -17,8 +17,8 @@ public class Invoice {
         super();
     }
 
-    public Invoice(int custormer_id, LocalDate order_date, LocalDate pickup_date, LocalDate return_date, BigDecimal late_fee) {
-        this.custormer_id = custormer_id;
+    public Invoice(int customer_id, LocalDate order_date, LocalDate pickup_date, LocalDate return_date, BigDecimal late_fee) {
+        this.customer_id = customer_id;
         this.order_date = order_date;
         this.pickup_date = pickup_date;
         this.return_date = return_date;
@@ -33,12 +33,12 @@ public class Invoice {
         this.invoice_id = invoice_id;
     }
 
-    public int getCustormer_id() {
-        return custormer_id;
+    public int getCustomer_id() {
+        return customer_id;
     }
 
-    public void setCustormer_id(int custormer_id) {
-        this.custormer_id = custormer_id;
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
     }
 
     public LocalDate getOrder_date() {
@@ -79,7 +79,7 @@ public class Invoice {
         if (o == null || getClass() != o.getClass()) return false;
         Invoice invoice = (Invoice) o;
         return invoice_id == invoice.invoice_id &&
-                custormer_id == invoice.custormer_id &&
+                customer_id == invoice.customer_id &&
                 order_date.equals(invoice.order_date) &&
                 pickup_date.equals(invoice.pickup_date) &&
                 return_date.equals(invoice.return_date) &&
@@ -88,6 +88,6 @@ public class Invoice {
 
     @Override
     public int hashCode() {
-        return Objects.hash(invoice_id, custormer_id, order_date, pickup_date, return_date, late_fee);
+        return Objects.hash(invoice_id, customer_id, order_date, pickup_date, return_date, late_fee);
     }
 }
