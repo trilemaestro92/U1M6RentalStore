@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public class InvoiceDaoJbdcTemplateImpl implements InvoiceDao {
+public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
 
     @Override
     public Invoice addInvoice(Invoice invoice) {

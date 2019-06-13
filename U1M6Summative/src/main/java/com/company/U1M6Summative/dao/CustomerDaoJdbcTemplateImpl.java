@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
     @Repository
-    public class CustomerDaoJbdcTemplateImpl implements CustomerDao{
+    public class CustomerDaoJdbcTemplateImpl implements CustomerDao{
         private JdbcTemplate jdbcTemplate;
         private static final String INSERT_CUSTOMER_SQL =
                 "insert into customer (first_name, last_name, email, company, phone) values (?, ? , ?, ?, ?)";
