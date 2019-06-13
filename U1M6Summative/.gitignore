@@ -28,7 +28,4 @@ HELP.md
 ### VS Code ###
 .vscode/
 
-**/resources/**
-
-/U1M6Summative/src/main/resources/*
-/U1M6Summative/src/test/resources/*
+*.properties
