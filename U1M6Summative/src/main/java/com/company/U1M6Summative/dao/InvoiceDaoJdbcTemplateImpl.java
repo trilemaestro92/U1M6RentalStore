@@ -53,9 +53,9 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
     }
 
     @Override
-    public Invoice deleteInvoice(int id) {
+    public void deleteInvoice(int id) {
         jdbcTemplate.update(DELETE_INVOICE_SQL, id);
-        return jdbcTemplate.queryForObject(SELECT_INVOICE_BY_ID_SQL, this::mapRowtoInvoice, id);
+//        return jdbcTemplate.queryForObject(SELECT_INVOICE_BY_ID_SQL, this::mapRowtoInvoice, id);
     }
 
     @Override
