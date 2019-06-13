@@ -28,4 +28,4 @@ HELP.md
 ### VS Code ###
 .vscode/
 
-*.properties
+application.properties 
