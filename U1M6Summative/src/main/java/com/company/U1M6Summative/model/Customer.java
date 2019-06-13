@@ -11,6 +11,18 @@ public class Customer {
     private String company;
     private String phone;
 
+    public Customer(){
+
+    }
+
+    public Customer(String first_name, String last_name, String email, String company, String phone) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.company = company;
+        this.phone = phone;
+    }
+
     public int getCustomer_id() {
         return customer_id;
     }
