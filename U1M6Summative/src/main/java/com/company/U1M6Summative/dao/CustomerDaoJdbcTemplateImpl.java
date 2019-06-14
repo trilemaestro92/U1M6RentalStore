@@ -24,12 +24,7 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao{
                 "update customer set first_name = ?, last_name = ?, email = ?, company = ?, phone =? where customer_id = ?";
         private static final String DELETE_SQL =
                 "delete from customer where customer_id =?";
-        //customer_id int(11) not null auto_increment primary key,
-//    first_name varchar(50) not null,
-//    last_name varchar(50) not null,
-//    email varchar(75) not null,
-//    company varchar(50) not null,
-//    phone varchar(50) not null
+
 
         @Autowired
         public CustomerDaoJdbcTemplateImpl(JdbcTemplate jdbcTemplate){
