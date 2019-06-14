@@ -20,7 +20,8 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
             "insert into invoice (customer_id, order_date, pickup_date, return_date, late_fee) values (?, ?, ?, ?, ?)";
 
     private static final String SELECT_INVOICE_BY_CUSTOMER_SQL =
-            "select * from invoice where customer_id = ?";
+            "select * from invoice inner join customer on invoice.customer_id = customer.customer_id" +
+                    " where customer.first_name =? and customer.last_name = ? ";
 
     private static final String DELETE_INVOICE_SQL =
             "delete from invoice where invoice_id = ?";
@@ -55,13 +56,12 @@ public class InvoiceDaoJdbcTemplateImpl implements InvoiceDao {
     @Override
     public void deleteInvoice(int id) {
         jdbcTemplate.update(DELETE_INVOICE_SQL, id);
-//        return jdbcTemplate.queryForObject(SELECT_INVOICE_BY_ID_SQL, this::mapRowtoInvoice, id);
     }
 
     @Override
-    public Invoice findInvoiceByCustomer(int id) {
+    public List<Invoice> findInvoiceByCustomer(String first, String last) {
         try {
-            return jdbcTemplate.queryForObject(SELECT_INVOICE_BY_CUSTOMER_SQL, this::mapRowtoInvoice, id);
+            return jdbcTemplate.query(SELECT_INVOICE_BY_CUSTOMER_SQL, this::mapRowtoInvoice, first, last);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
