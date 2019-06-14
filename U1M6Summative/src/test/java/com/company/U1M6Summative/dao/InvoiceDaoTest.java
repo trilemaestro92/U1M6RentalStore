@@ -1,7 +1,9 @@
 package com.company.U1M6Summative.dao;
 
+import com.company.U1M6Summative.model.Customer;
 import com.company.U1M6Summative.model.Invoice;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +22,10 @@ public class InvoiceDaoTest {
 
     @Autowired
     InvoiceDao invoiceDao;
-
-//    @Autowired
-//    CustomerDao customerDao;
-//    @Autowired
-//    ItemDao itemDao;
+    @Autowired
+    CustomerDao customerDao;
+    @Autowired
+    ItemDao itemDao;
 
     @Before
     public void setUp() throws Exception {
@@ -32,11 +33,32 @@ public class InvoiceDaoTest {
 
         invoiceList.stream()
                 .forEach(invoice -> invoiceDao.deleteInvoice(invoice.getInvoice_id()));
+
+        List<Customer> customerList = customerDao.getAllCustomers();
+
+        customerList.stream()
+                .forEach(customer -> customerDao.deleteCustomer(customer.getCustomer_id()));
+
+
     }
 
     @Test
     public void addInvoice() {
-        Invoice invoice = invoiceDao.addInvoice(generateTestInvoice1());
+        Customer customer = new Customer();
+        customer.git("Ellen");
+        customer.setLast_name("Martin");
+        customer.setCompany("EllenCo");
+        customer.setEmail("ellen12@gmail.com");
+        customer.setPhone("3122345678");
+        customer = customerDao.addCustomer(customer);
+
+        Invoice invoice = new Invoice();
+        invoice.setCustomer_id(customer.getCustomer_id());
+        invoice.setOrder_date(LocalDate.of(2000,1,1));
+        invoice.setPickup_date(LocalDate.of(1999,9,9));
+        invoice.setReturn_date(LocalDate.of(1980,12,12));
+        invoice.setLate_fee(new BigDecimal("9.99"));
+
         invoice = invoiceDao.addInvoice(invoice);
 
         List<Invoice> invoiceList = invoiceDao.getAllInvoices();
@@ -45,38 +67,49 @@ public class InvoiceDaoTest {
 
     @Test
     public void deleteInvoice() {
-        Invoice invoice = invoiceDao.addInvoice(generateTestInvoice1());
+        Customer customer = new Customer();
+        customer.setFirst_name("Ellen");
+        customer.setLast_name("Martin");
+        customer.setCompany("EllenCo");
+        customer.setEmail("ellen12@gmail.com");
+        customer.setPhone("3122345678");
+        customer = customerDao.addCustomer(customer);
+
+        Invoice invoice = new Invoice();
+        invoice.setCustomer_id(customer.getCustomer_id());
+        invoice.setOrder_date(LocalDate.of(2000,1,1));
+        invoice.setPickup_date(LocalDate.of(1999,9,9));
+        invoice.setReturn_date(LocalDate.of(1980,12,12));
+        invoice.setLate_fee(new BigDecimal("9.99"));
+
+        invoice = invoiceDao.addInvoice(invoice);
         invoiceDao.deleteInvoice(invoice.getInvoice_id());
-        Invoice invoiceDeleteTest = invoiceDao.findInvoiceById(invoice.getInvoice_id());
+        Invoice invoiceDeleteTest = invoiceDao.findInvoiceByCustomer(customerDao.getCustomer(customer.getCustomer_id()).getCustomer_id());
 
         assertNull(invoiceDeleteTest);
     }
 
     @Test
     public void findInvoiceByCustomer() {
-        Invoice invoice = generateTestInvoice1();
+//        BigDecimal bd
+
+        Customer customer = new Customer();
+        customer.setFirst_name("Ellen");
+        customer.setLast_name("Martin");
+        customer.setCompany("EllenCo");
+        customer.setEmail("ellen12@gmail.com");
+        customer.setPhone("3122345678");
+        customer = customerDao.addCustomer(customer);
+
+        Invoice invoice = new Invoice();
+        invoice.setCustomer_id(customer.getCustomer_id());
+        invoice.setOrder_date(LocalDate.of(2000,1,1));
+        invoice.setPickup_date(LocalDate.of(1999,9,9));
+        invoice.setReturn_date(LocalDate.of(1980,12,12));
+        invoice.setLate_fee(new BigDecimal("9.99"));
+        invoice = invoiceDao.addInvoice(invoice);
+
         Invoice invoiceFindTest = invoiceDao.findInvoiceByCustomer(invoice.getCustomer_id());
-        assertEquals(invoiceFindTest, invoice);
-    }
-
-    public Invoice generateTestInvoice1() {
-        Invoice test = new Invoice();
-        test.setCustomer_id(42);
-        test.setOrder_date(LocalDate.of(2000,1,1));
-        test.setPickup_date(LocalDate.of(1999,9,9));
-        test.setReturn_date(LocalDate.of(1980,12,12));
-        test.setLate_fee(new BigDecimal("9.99"));
-
-        return test;
-    }
-
-    public Invoice generateTestInvoice2() {
-        Invoice test = new Invoice();
-        test.setCustomer_id(99);
-        test.setOrder_date(LocalDate.of(1800,5,5));
-        test.setPickup_date(LocalDate.of(1950,8,30));
-        test.setReturn_date(LocalDate.of(1971,3,22));
-        test.setLate_fee(new BigDecimal("9.99"));
-        return test;
+        assertEquals(invoice, invoiceFindTest);
     }
 }

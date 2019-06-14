@@ -55,8 +55,7 @@ public class InvoiceItemDaoTest {
         testItem = itemDao.addItem(testItem);
         testInvoice = invoiceDao.addInvoice(testInvoice);
 
-        InvoiceItem invoiceItem = new InvoiceItem(testInvoice.getInvoice_id(), testItem.getItem_id(), 1,
-                50, 15);
+        InvoiceItem invoiceItem = new InvoiceItem(testInvoice.getInvoice_id(), testItem.getItem_id(), 1, new BigDecimal("0.50"), new BigDecimal("2.82"));
 
         invoiceItem = invoiceItemDao.addInvoiceItem(invoiceItem);
 

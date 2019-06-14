@@ -47,7 +47,7 @@ jdbcTemplate.update(INSERT_CUSTOMER_SQL,
         customer.getPhone());
 int id =jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
 customer.setCustomer_id(id);
-            return  customer;
+            return customer;
         }
 
         @Override

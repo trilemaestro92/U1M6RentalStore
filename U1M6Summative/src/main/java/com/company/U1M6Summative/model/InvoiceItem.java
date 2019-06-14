@@ -1,5 +1,6 @@
 package com.company.U1M6Summative.model;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class InvoiceItem {
@@ -7,22 +8,20 @@ public class InvoiceItem {
     private int invoiceId;
     private int itemId;
     private int quantity;
-    private double unitRate;
-    private double discount;
+    private BigDecimal unitRate;
+    private BigDecimal discount;
 
     public InvoiceItem() {
-
+        super();
     }
 
-    public InvoiceItem(int invoiceId, int itemId, int quantity, double unitRate, double discount) {
+    public InvoiceItem(int invoiceId, int itemId, int quantity, BigDecimal unitRate, BigDecimal discount) {
         this.invoiceId = invoiceId;
         this.itemId = itemId;
         this.quantity = quantity;
         this.unitRate = unitRate;
         this.discount = discount;
     }
-
-
 
     public int getInvoiceItemId() {
         return invoiceItemId;
@@ -56,19 +55,19 @@ public class InvoiceItem {
         this.quantity = quantity;
     }
 
-    public double getUnitRate() {
+    public BigDecimal getUnitRate() {
         return unitRate;
     }
 
-    public void setUnitRate(double unitRate) {
+    public void setUnitRate(BigDecimal unitRate) {
         this.unitRate = unitRate;
     }
 
-    public double getDiscount() {
+    public BigDecimal getDiscount() {
         return discount;
     }
 
-    public void setDiscount(double discount) {
+    public void setDiscount(BigDecimal discount) {
         this.discount = discount;
     }
 
@@ -81,8 +80,8 @@ public class InvoiceItem {
                 invoiceId == that.invoiceId &&
                 itemId == that.itemId &&
                 quantity == that.quantity &&
-                Double.compare(that.unitRate, unitRate) == 0 &&
-                Double.compare(that.discount, discount) == 0;
+                unitRate.equals(that.unitRate) &&
+                discount.equals(that.discount);
     }
 
     @Override

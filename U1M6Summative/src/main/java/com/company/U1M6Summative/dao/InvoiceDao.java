@@ -8,7 +8,7 @@ public interface InvoiceDao {
 
     Invoice addInvoice(Invoice invoice);
 
-    Invoice deleteInvoice(int id);
+    void deleteInvoice(int id);
 
     Invoice findInvoiceByCustomer(int id);
 
