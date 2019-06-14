@@ -45,7 +45,7 @@ public class InvoiceDaoTest {
     @Test
     public void addInvoice() {
         Customer customer = new Customer();
-        customer.git("Ellen");
+        customer.setFirst_name("Ellen");
         customer.setLast_name("Martin");
         customer.setCompany("EllenCo");
         customer.setEmail("ellen12@gmail.com");
