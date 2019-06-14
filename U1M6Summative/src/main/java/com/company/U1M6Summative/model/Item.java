@@ -13,6 +13,14 @@ public class Item {
     public Item(){
         super();
     }
+
+    public Item(int item_id, String name, String description, BigDecimal daily_rate) {
+        this.item_id = item_id;
+        this.name = name;
+        this.description = description;
+        this.daily_rate = daily_rate;
+    }
+
     public Item(String name, String description, BigDecimal daily_rate) {
         this.name = name;
         this.description = description;
