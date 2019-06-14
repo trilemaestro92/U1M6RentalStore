@@ -12,7 +12,7 @@ public class InvoiceItem {
     private BigDecimal discount;
 
     public InvoiceItem() {
-
+        super();
     }
 
     public InvoiceItem(int invoiceId, int itemId, int quantity, BigDecimal unitRate, BigDecimal discount) {
@@ -22,8 +22,6 @@ public class InvoiceItem {
         this.unitRate = unitRate;
         this.discount = discount;
     }
-
-
 
     public int getInvoiceItemId() {
         return invoiceItemId;

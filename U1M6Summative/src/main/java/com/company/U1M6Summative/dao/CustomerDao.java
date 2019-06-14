@@ -10,4 +10,5 @@ public interface CustomerDao {
     List<Customer> getAllCustomers();
     void updateCustomer(Customer customer);
     void deleteCustomer(int id);
+
 }

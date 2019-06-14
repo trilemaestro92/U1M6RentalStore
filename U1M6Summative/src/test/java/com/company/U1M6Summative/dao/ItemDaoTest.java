@@ -38,7 +38,7 @@ public class ItemDaoTest {
     }
 
     @Test
-    public void addGetDeleteAuthor() {
+    public void addGetDeleteItem() {
 
         Item item = new Item("bike", "rent a motobike", new BigDecimal("4.50"));
 
@@ -56,7 +56,7 @@ public class ItemDaoTest {
     }
 
     @Test
-    public void updateAuthor() {
+    public void updateItem() {
 
         Item item = new Item("bike", "rent a motobike", new BigDecimal("4.50"));
 
@@ -74,7 +74,7 @@ public class ItemDaoTest {
     }
 
     @Test
-    public void getAllAuthors() {
+    public void getAllItem() {
 
         Item item = new Item("bike", "rent a motobike", new BigDecimal("4.50"));
 

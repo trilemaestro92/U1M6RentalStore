@@ -1,6 +1,5 @@
 package com.company.U1M6Summative.model;
 
-
 import java.util.Objects;
 
 public class Customer {
@@ -15,7 +14,7 @@ public class Customer {
         super();
     }
 
-    public Customer(String first_name, String last_name, String email, String company, String phone) {
+    public Customer (String first_name, String last_name, String email, String company, String phone) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
@@ -88,5 +87,4 @@ public class Customer {
     public int hashCode() {
         return Objects.hash(customer_id, first_name, last_name, email, company, phone);
     }
-
 }

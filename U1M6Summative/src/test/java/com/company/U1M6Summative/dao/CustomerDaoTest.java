@@ -11,9 +11,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.List;
 
 import static org.junit.Assert.*;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class CustomerDaoJdbcTemplateImplTest {
+public class CustomerDaoTest {
+
     @Autowired
     CustomerDao customerDao;
 
@@ -25,7 +27,7 @@ public class CustomerDaoJdbcTemplateImplTest {
     }
 
     @Test
-    public void addGetDeleteAuthor() {
+    public void addGetDeleteCustomer() {
         Customer customer = new Customer();
         customer.setFirst_name("Ellen");
         customer.setLast_name("Martin");
@@ -74,6 +76,5 @@ public class CustomerDaoJdbcTemplateImplTest {
         assertEquals(customer1, customer);
 
     }
-
 
 }
