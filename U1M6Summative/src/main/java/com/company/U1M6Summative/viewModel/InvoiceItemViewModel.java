@@ -1,9 +1,12 @@
 package com.company.U1M6Summative.viewModel;
 
 import com.company.U1M6Summative.model.Invoice;
+import com.company.U1M6Summative.model.InvoiceItem;
 import com.company.U1M6Summative.model.Item;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class InvoiceItemViewModel {
@@ -14,16 +17,26 @@ public class InvoiceItemViewModel {
     private int quantity;
     private BigDecimal unitRate;
     private BigDecimal discount;
+    private List<InvoiceItem> itemsList = new ArrayList<>();
 
-    public InvoiceItemViewModel(){
+    public InvoiceItemViewModel() {
         super();
     }
+
     public InvoiceItemViewModel(Invoice invoice, Item item, int quantity, BigDecimal unitRate, BigDecimal discount) {
         this.invoice = invoice;
         this.item = item;
         this.quantity = quantity;
         this.unitRate = unitRate;
         this.discount = discount;
+    }
+
+    public List<InvoiceItem> getItemsList() {
+        return itemsList;
+    }
+
+    public void setItemsList(List<InvoiceItem> itemsList) {
+        this.itemsList = itemsList;
     }
 
     public int getInvoiceItemId() {
@@ -84,11 +97,12 @@ public class InvoiceItemViewModel {
                 invoice.equals(that.invoice) &&
                 item.equals(that.item) &&
                 unitRate.equals(that.unitRate) &&
-                discount.equals(that.discount);
+                discount.equals(that.discount) &&
+                itemsList.equals(that.itemsList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(invoiceItemId, invoice, item, quantity, unitRate, discount);
+        return Objects.hash(invoiceItemId, invoice, item, quantity, unitRate, discount, itemsList);
     }
 }

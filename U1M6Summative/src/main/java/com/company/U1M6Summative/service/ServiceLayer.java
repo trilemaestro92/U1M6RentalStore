@@ -44,12 +44,41 @@ public class ServiceLayer {
 
         return invoiceItemViewModel;
     }
+//    @Transactional
+//    public InvoiceItemViewModel saveInvoiceItem(InvoiceItemViewModel ivm) {
+//        InvoiceItem iItem = new InvoiceItem();
+//        iItem.setInvoiceId(ivm.getInvoice().getInvoice_id());
+//        iItem.setItemId(ivm.getItem().getItem_id());
+//        iItem.setQuantity(ivm.getQuantity());
+//        iItem.setUnitRate(ivm.getUnitRate());
+//        iItem.setDiscount(ivm.getDiscount());
+//        iItem = invoiceItemDao.addInvoiceItem(iItem);
+//
+//        ivm.setInvoiceItemId(iItem.getInvoiceItemId());
+//
+//        List<InvoiceItem> invoiceItems = ivm.getItemsList();
+//        invoiceItems.stream()
+//                .forEach(invoiceItem -> {
+//                    invoiceItem.setItemId(ivm.getInvoiceItemId());
+//                    invoiceItemDao.addInvoiceItem(invoiceItem);
+//                });
+//        invoiceItems =invoiceItemDao.getInvoiceItem(ivm.getInvoiceItemId());
+//        return ivm;
+//    }
+
+
 
     @Transactional
     public InvoiceItemViewModel findInvoiceItem(int id) {
         InvoiceItem invoiceItem = invoiceItemDao.getInvoiceItem(id);
         return buildInvoiceItemViewModel(invoiceItem);
     }
+    //Invoice
+    public Invoice saveInvoice(Invoice invoice){
+        return invoiceDao.addInvoice(invoice);
+    }
+
+
 
     //Item
 
