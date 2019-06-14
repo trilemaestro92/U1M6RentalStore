@@ -25,7 +25,6 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao{
         private static final String DELETE_SQL =
                 "delete from customer where customer_id =?";
 
-
         @Autowired
         public CustomerDaoJdbcTemplateImpl(JdbcTemplate jdbcTemplate){
 
@@ -34,14 +33,14 @@ public class CustomerDaoJdbcTemplateImpl implements CustomerDao{
         @Override
         @Transactional
         public Customer addCustomer(Customer customer) {
-jdbcTemplate.update(INSERT_CUSTOMER_SQL,
-        customer.getFirst_name(),
-        customer.getLast_name(),
-        customer.getEmail(),
-        customer.getCompany(),
-        customer.getPhone());
-int id =jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
-customer.setCustomer_id(id);
+        jdbcTemplate.update(INSERT_CUSTOMER_SQL,
+                customer.getFirst_name(),
+                customer.getLast_name(),
+                customer.getEmail(),
+                customer.getCompany(),
+                customer.getPhone());
+        int id =jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
+        customer.setCustomer_id(id);
             return customer;
         }
 
