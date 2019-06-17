@@ -15,6 +15,15 @@ public class InvoiceItem {
         super();
     }
 
+    public InvoiceItem(int invoiceItemId, int invoiceId, int itemId, int quantity, BigDecimal unitRate, BigDecimal discount) {
+        this.invoiceItemId = invoiceItemId;
+        this.invoiceId = invoiceId;
+        this.itemId = itemId;
+        this.quantity = quantity;
+        this.unitRate = unitRate;
+        this.discount = discount;
+    }
+
     public InvoiceItem(int invoiceId, int itemId, int quantity, BigDecimal unitRate, BigDecimal discount) {
         this.invoiceId = invoiceId;
         this.itemId = itemId;
