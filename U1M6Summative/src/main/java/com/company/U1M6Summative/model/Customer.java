@@ -14,6 +14,15 @@ public class Customer {
         super();
     }
 
+    public Customer(int customer_id, String first_name, String last_name, String email, String company, String phone) {
+        this.customer_id = customer_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.company = company;
+        this.phone = phone;
+    }
+
     public Customer (String first_name, String last_name, String email, String company, String phone) {
         this.first_name = first_name;
         this.last_name = last_name;
