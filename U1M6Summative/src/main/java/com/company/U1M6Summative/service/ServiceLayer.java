@@ -159,7 +159,8 @@ public class ServiceLayer {
         return itemDao.getAllItem();
     }
     public Item updateItem(Item item) {
-        return itemDao.updateItem(item);
+        itemDao.updateItem(item);
+        return item;
     }
     public int removeItem(int id) {
         // -1 if failed
