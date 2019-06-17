@@ -44,6 +44,14 @@ public class ServiceLayer {
 
         return invoiceItemViewModel;
     }
+    public InvoiceItemViewModel findIVM(int id) {
+
+        // Get the album object first
+        InvoiceItem ivm = invoiceItemDao.getInvoiceItem(id);
+
+        return buildInvoiceItemViewModel(ivm);
+
+    }
 //    @Transactional
 //    public InvoiceItemViewModel saveInvoiceItem(InvoiceItemViewModel ivm) {
 //        InvoiceItem iItem = new InvoiceItem();
@@ -67,17 +75,76 @@ public class ServiceLayer {
 //    }
 
 
-
     @Transactional
     public InvoiceItemViewModel findInvoiceItem(int id) {
         InvoiceItem invoiceItem = invoiceItemDao.getInvoiceItem(id);
         return buildInvoiceItemViewModel(invoiceItem);
     }
+
     //Invoice
+
     public Invoice saveInvoice(Invoice invoice){
         return invoiceDao.addInvoice(invoice);
     }
+    public Invoice findInvoice(int id) {
+        return invoiceDao.findInvoiceById(id);
+    }
+    public List<Invoice> findAllInvoices() {
+        return invoiceDao.getAllInvoices();
+    }
+    public int removeInvoice(int id) {
+        // -1 if failed
+        // 0 if item with item id does not exist
+        // 1 if delete is successful
+        int returnVal = -1;
+        Invoice beforeDelete = invoiceDao.findInvoiceById(id);
+        if(beforeDelete == null){
+            returnVal = 0;
+        }else{
+            try{
+                invoiceDao.deleteInvoice(id);
+                return 1;
+            }catch(Exception ex){
+                System.out.println("delete error");
+                return -1;
+            }
+        }
+        return returnVal;
+    }
 
+    //Customer
+
+    public Customer saveCustomer(Customer customer) {
+        return customerDao.addCustomer(customer);
+    }
+    public Customer findCustomer(int id) {
+        return customerDao.getCustomer(id);
+    }
+    public List<Customer> findAllCustomers(){
+        return customerDao.getAllCustomers();
+    }
+    public Customer updateCustomer(Customer customer) {
+        return customerDao.updateCustomer(customer);
+    }
+    public int removeCustomer(int id) {
+        // -1 if failed
+        // 0 if item with item id does not exist
+        // 1 if delete is successful
+        int returnVal = -1;
+        Customer beforeDelete = customerDao.getCustomer(id);
+        if(beforeDelete == null){
+            returnVal = 0;
+        }else{
+            try{
+                itemDao.deleteItem(id);
+                return 1;
+            }catch(Exception ex){
+                System.out.println("delete error");
+                return -1;
+            }
+        }
+        return returnVal;
+    }
 
 
     //Item
@@ -92,7 +159,8 @@ public class ServiceLayer {
         return itemDao.getAllItem();
     }
     public Item updateItem(Item item) {
-        return itemDao.updateItem(item);
+        itemDao.updateItem(item);
+        return item;
     }
     public int removeItem(int id) {
         // -1 if failed
