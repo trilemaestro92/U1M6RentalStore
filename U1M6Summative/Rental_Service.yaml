@@ -1,22 +1,23 @@
 openapi: 3.0.0
 info:
-  title: Rental Store REST Services 
+  title: Rental Store REST Services Application
   description:
-    REST web service for a Rental Store
+    Simple RESTful web services for a Rental Store Application
   version: 1.0.0
 servers:
   - url: 'http://localhost:8080'
     description: Local dev server
+    
 paths:
 
   /customer/{customer_id}:
     put:
-      summary: Updated the entry for the customer with the given ID.
+      summary: Update customer information by customeer_id
       parameters: 
         - name: customer_id
           in: path
           required: true
-          description: ID of the customer you would like to update.
+          description: Id of the customer to update
           schema:
             type: integer
             format: int64
@@ -30,15 +31,15 @@ paths:
       responses:
         '200':
           description: Customer successfully updated.
-        '422':
-          description: Customer ID on path mush match the ID in the Customer object.
+        '400':
+          description: Customer not found
     delete:
-      summary: Deletes the entry for the customer with the given ID.
+      summary: Deletes customer by given Id
       parameters: 
         - name: customer_id
           in: path
           required: true
-          description: ID of the customer you would like to delete.
+          description: Id of the customer to delete
           schema:
             type: integer
             format: int64
@@ -46,19 +47,41 @@ paths:
       responses:
         '200':
           description: Customer successfully deleted.
+        '400':
+          description: Customer not found
+    get:
+      summary: Retrieves customer by id
+      parameters: 
+        - name: customer_id
+          in: path
+          required: true
+          description: Id of the customer to retrieve
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Customer successfully retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: Customer not found
      
   /customer:
     get:
-      summary: Retrieves Customer Object.
+      summary: Retrieves list of all customers
       responses:
         '200':
-          description: Customer retrieved.
+          description: All customers retrieved
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Customer'
     post:
-      summary: Creates customers
+      summary: Creates a new customer
       requestBody:
         required: true
         content:
@@ -67,28 +90,30 @@ paths:
               $ref: '#/components/schemas/Customer'
       responses:
         '201':
-          description: Customer created successfully. 
+          description: Customer added successfully
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Customer'
         '400':
-          description: Invalid request syntax.
+          description: Invalid request syntax
         '422':
-          description: Incomplete information. Some required fields missing
+          description: Incomplete; Required field(s) missing
       
   /item:
     get:
-      summary: Retrievs Item Object
+      summary: Retrieves Item Object
       responses:
         '200':
-          description: Item is retrived.
+          description: Item retrived successfully
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Item'
+        '400':
+          description: not found
     post:
-      summary: Creates item
+      summary: Create new item
       requestBody:
         required: true
         content:
@@ -97,23 +122,24 @@ paths:
               $ref: '#/components/schemas/Item'
       responses:
         '201':
-          description: Item created successfully. 
+          description: Item created successfully
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Item'
         '400':
-          description: Invalid request syntax.
+          description: Invalid request syntax
         '422':
-          description: Incomplete information. Some required fields missing
+          description: Incomplete; Required field(s) missing
+          
   /item/{item_id}:
     put:
-      summary: Updated the entry for the item with the given ID.
+      summary: Updates item by item_id
       parameters: 
         - name: item_id
           in: path
           required: true
-          description: ID of the item you would like to update.
+          description: Id of item to update
           schema:
             type: integer
             format: int64
@@ -127,22 +153,46 @@ paths:
       responses:
         '200':
           description: Item successfully updated.
+        '400':
+          description: Invalid request syntax
         '422':
-          description: Item ID on path mush match the ID in the Item object.
+          description: Incomplete; Required field(s) missing
     delete:
-      summary: Deletes the entry for the item with the given ID.
+      summary: Deletes item by item_id
       parameters: 
         - name: item_id
           in: path
           required: true
-          description: ID of the item you would like to delete.
+          description: Id of the item to delete
           schema:
             type: integer
             format: int64
             minimum: 1
       responses:
         '200':
-          description: Item successfully deleted.
+          description: Item deleted successfully
+        '400':
+          description: Item not found
+    get:
+      summary: Retrieves Item by item_id
+      parameters: 
+        - name: item_id
+          in: path
+          required: true
+          description: Id of item to be retrieved
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Item retrieved successfully 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '400':
+          description: Item not found
           
   /invoice:
     post:
@@ -164,20 +214,47 @@ paths:
           description: Invalid request syntax.
         '422':
           description: Incomplete information. Some required fields missing
+          
+  /invoice/{invoice_id}:     
     delete:
-      summary: Deletes the entry for the invoice with the given ID.
+      summary: Deletes invoice by invoice_id
       parameters: 
         - name: invoice_id
           in: path
           required: true
-          description: ID of the invoice you would like to delete.
+          description: Id of invoice to delete
           schema:
             type: integer
             format: int64
             minimum: 1
       responses:
         '200':
-          description: Invoice successfully deleted.
+          description: Invoice deleted successfully 
+        '400':
+          description: Invoice not found
+          
+  /invoice/{customer_id}:
+    get:
+      summary: Retrieves Invoices by associated customer_id
+      parameters: 
+        - name: customer_id
+          in: path
+          required: true
+          description: customer_id of invoice to retrive
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: Invoice successfully retrived
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '400':
+          description: Invoice not found
+                  
   /invoice_item:
     post:
       summary: Creates an invoice item
@@ -198,46 +275,7 @@ paths:
           description: Invalid request syntax.
         '422':
           description: Incomplete information. Some required fields missing
-    delete:
-      summary: Deletes the entry for the invoice item with the given ID.
-      parameters: 
-        - name: invoice_item
-          in: path
-          required: true
-          description: ID of the invoice item you would like to delete.
-          schema:
-            type: integer
-            format: int64
-            minimum: 1
-      responses:
-        '200':
-          description: Invoice item successfully deleted.
-  /invoice/{customer_id}:
-    get:
-      summary: Retrievs Customer  by ID
-      parameters: 
-        - name: customer_id
-          in: path
-          required: true
-          description: ID of the customer that needs to be retrived. 
-          schema:
-            type: integer
-            format: int64
-            minimum: 1
-      responses:
-        '200':
-          description: Customer by ID is retrived.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Invoice'
-    
-      
-  
- 
-  
-    
-  
+
 components:
   schemas:
     Customer:
