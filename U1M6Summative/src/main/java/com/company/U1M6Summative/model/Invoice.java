@@ -17,6 +17,15 @@ public class Invoice {
         super();
     }
 
+    public Invoice(int invoice_id, int customer_id, LocalDate order_date, LocalDate pickup_date, LocalDate return_date, BigDecimal late_fee) {
+        this.invoice_id = invoice_id;
+        this.customer_id = customer_id;
+        this.order_date = order_date;
+        this.pickup_date = pickup_date;
+        this.return_date = return_date;
+        this.late_fee = late_fee;
+    }
+
     public Invoice(int customer_id, LocalDate order_date, LocalDate pickup_date, LocalDate return_date, BigDecimal late_fee) {
         this.customer_id = customer_id;
         this.order_date = order_date;
